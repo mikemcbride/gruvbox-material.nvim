@@ -1,5 +1,5 @@
-require("plenary.reload").reload_module("gruvbox", true)
-local gruvbox = require("gruvbox")
+require("plenary.reload").reload_module("gruvbox_material", true)
+local gruvbox = require("gruvbox_material")
 local default = gruvbox.config
 
 describe("setup", function()

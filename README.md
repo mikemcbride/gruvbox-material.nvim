@@ -1,7 +1,7 @@
 <div align="center">
       <h1> <img src="https://i.postimg.cc/WpQzgxVh/plugin-Icon.png" width="80px"><br/>gruvbox.nvim</h1>
      </div>
-<p align="center"> 
+<p align="center">
       <a href="https://twitter.com/intent/user?screen_name=ellisonleao" target="_blank"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/ellisonleao?style=for-the-badge" style="vertical-align:center" ></a>
       <a href="#"><img alt="Made with Lua" src="https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua" style="vertical-align:center" /></a>
 </p>
@@ -21,13 +21,13 @@ Neovim 0.8.0+
 Using `packer`
 
 ```lua
-use { "ellisonleao/gruvbox.nvim" }
+use { "mikemcbride/gruvbox-material.nvim" }
 ```
 
 Using `lazy.nvim`
 
 ```lua
-{ "ellisonleao/gruvbox.nvim", priority = 1000 }
+{ "mikemcbride/gruvbox-material.nvim", priority = 1000, as = "gruvbox_material" }
 ```
 
 # Basic Usage
@@ -36,14 +36,14 @@ Inside `init.vim`
 
 ```vim
 set background=dark " or light if you want light mode
-colorscheme gruvbox
+colorscheme gruvbox_material
 ```
 
 Inside `init.lua`
 
 ```lua
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme gruvbox_material]])
 ```
 
 # Configuration
@@ -53,7 +53,7 @@ Additional settings for gruvbox are:
 ```lua
 -- setup must be called before loading the colorscheme
 -- Default options:
-require("gruvbox").setup({
+require("gruvbox-material").setup({
   undercurl = true,
   underline = true,
   bold = true,
@@ -75,7 +75,7 @@ require("gruvbox").setup({
   dim_inactive = false,
   transparent_mode = false,
 })
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme gruvbox-material")
 ```
 
 ## Overriding
@@ -85,12 +85,12 @@ vim.cmd("colorscheme gruvbox")
 You can specify your own palette colors. For example:
 
 ```lua
-require("gruvbox").setup({
+require("gruvbox-material").setup({
     palette_overrides = {
         bright_green = "#990000",
     }
 })
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme gruvbox-material")
 ```
 
 More colors in the [palette.lua](lua/gruvbox/palette.lua) file
@@ -101,12 +101,12 @@ If you don't enjoy the current color for a specific highlight group, now you can
 example:
 
 ```lua
-require("gruvbox").setup({
+require("gruvbox-material").setup({
     overrides = {
         SignColumn = {bg = "#ff9900"}
     }
 })
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme gruvbox-material")
 ```
 
 Please note that the override values must follow the attributes from the highlight group map, such as:

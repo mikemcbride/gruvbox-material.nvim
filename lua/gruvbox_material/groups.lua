@@ -21,8 +21,8 @@ local function set_terminal_colors(colors)
 end
 
 M.setup = function()
-  local config = require("gruvbox").config
-  local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
+  local config = require("gruvbox_material").config
+  local colors = require("gruvbox_material.palette").get_base_colors(vim.o.background, config.contrast)
 
   set_terminal_colors(colors)
 
