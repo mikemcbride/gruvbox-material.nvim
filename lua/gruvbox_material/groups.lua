@@ -572,6 +572,7 @@ M.setup = function()
     TelescopeBorder       = { fg = darkerbg, bg = darkerbg},
     TelescopeResultsBorder = { link = "TelescopeBorder" },
     TelescopePreviewBorder = { link = "TelescopeBorder" },
+    TelescopePreview      = { bg = colors.bg0 },
     TelescopePromptBorder = { fg = darkerstatusline, bg = darkerstatusline},
     TelescopePromptNormal = { fg = colors.red, bg = darkerstatusline},
     TelescopePromptPrefix = { fg = colors.yellow, bg = darkerstatusline},
