@@ -20,11 +20,57 @@ local function set_terminal_colors(colors)
   vim.g.terminal_color_15 = colors.fg1
 end
 
+local HEX_DIGITS = {
+    ['0'] = 0,
+    ['1'] = 1,
+    ['2'] = 2,
+    ['3'] = 3,
+    ['4'] = 4,
+    ['5'] = 5,
+    ['6'] = 6,
+    ['7'] = 7,
+    ['8'] = 8,
+    ['9'] = 9,
+    ['a'] = 10,
+    ['b'] = 11,
+    ['c'] = 12,
+    ['d'] = 13,
+    ['e'] = 14,
+    ['f'] = 15,
+    ['A'] = 10,
+    ['B'] = 11,
+    ['C'] = 12,
+    ['D'] = 13,
+    ['E'] = 14,
+    ['F'] = 15,
+}
+local function hex_to_rgb(hex)
+    return HEX_DIGITS[string.sub(hex, 1, 1)] * 16 + HEX_DIGITS[string.sub(hex, 2, 2)],
+        HEX_DIGITS[string.sub(hex, 3, 3)] * 16 + HEX_DIGITS[string.sub(hex, 4, 4)],
+        HEX_DIGITS[string.sub(hex, 5, 5)] * 16 + HEX_DIGITS[string.sub(hex, 6, 6)]
+end
+local function rgb_to_hex(r, g, b)
+    return bit.tohex(bit.bor(bit.lshift(r, 16), bit.lshift(g, 8), b), 6)
+end
+local function darken(hex, pct)
+    pct = 1 - pct
+    local r, g, b = hex_to_rgb(string.sub(hex, 2))
+    r = math.floor(r * pct)
+    g = math.floor(g * pct)
+    b = math.floor(b * pct)
+    return string.format("#%s", rgb_to_hex(r, g, b))
+end
+
 M.setup = function()
   local config = require("gruvbox_material").config
   local colors = require("gruvbox_material.palette").get_base_colors(vim.o.background, config.contrast)
 
   set_terminal_colors(colors)
+
+
+  local darkerbg           = darken(colors.bg0, 0.1)
+  local darkercursorline   = darken(colors.bg1, 0.1)
+  local darkerstatusline   = darken(colors.bg2, 0.1)
 
   local groups = {
     -- Base groups
@@ -511,17 +557,38 @@ M.setup = function()
     CocInfoHighlight = { link = "GruvboxBlueUnderline" },
     CocHintHighlight = { link = "GruvboxAquaUnderline" },
     -- telescope.nvim
-    TelescopeNormal = { link = "GruvboxFg1" },
-    TelescopeSelection = { link = "GruvboxOrangeBold" },
+    -- TelescopeNormal = { link = "GruvboxFg1" },
+    -- TelescopeSelection = { link = "GruvboxOrangeBold" },
     TelescopeSelectionCaret = { link = "GruvboxRed" },
     TelescopeMultiSelection = { link = "GruvboxGray" },
-    TelescopeBorder = { link = "TelescopeNormal" },
-    TelescopePromptBorder = { link = "TelescopeNormal" },
+    -- TelescopeBorder = { link = "TelescopeNormal" },
+    -- TelescopePromptBorder = { link = "TelescopeNormal" },
     TelescopeResultsBorder = { link = "TelescopeNormal" },
     TelescopePreviewBorder = { link = "TelescopeNormal" },
     TelescopeMatching = { link = "GruvboxBlue" },
-    TelescopePromptPrefix = { link = "GruvboxRed" },
+    -- TelescopePromptPrefix = { link = "GruvboxRed" },
     TelescopePrompt = { link = "TelescopeNormal" },
+
+    -- TelescopeBorder       = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil },
+    -- TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil, guisp = nil },
+    -- TelescopePromptNormal = { guifg = colors.red, guibg = darkerstatusline, gui = nil, guisp = nil },
+    -- TelescopePromptPrefix = { guifg = colors.yellow, guibg = darkerstatusline, gui = nil, guisp = nil },
+    -- TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil },
+    -- TelescopePreviewTitle = { guifg = darkercursorline, guibg = colors.green, gui = nil, guisp = nil },
+    -- TelescopePromptTitle  = { guifg = darkercursorline, guibg = colors.red, gui = nil, guisp = nil },
+    -- TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil },
+    -- TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil },
+    -- TelescopePreviewLine  = { guifg = nil, guibg = colors.bg1, gui = 'none', guisp = nil },
+    TelescopeBorder       = { guifg = colors.red, guibg = colors.bg0, gui = nil, guisp = nil },
+    TelescopePromptBorder = { guifg = colors.red, guibg = colors.bg0, gui = nil, guisp = nil },
+    TelescopePromptNormal = { guifg = colors.red, guibg = colors.bg0, gui = nil, guisp = nil },
+    TelescopePromptPrefix = { guifg = colors.red, guibg = colors.bg0, gui = nil, guisp = nil },
+    TelescopeNormal       = { guifg = nil, guibg = colors.bg0, gui = nil, guisp = nil },
+    TelescopePreviewTitle = { guifg = colors.bg1, guibg = colors.green, gui = nil, guisp = nil },
+    TelescopePromptTitle  = { guifg = colors.bg1, guibg = colors.green, gui = nil, guisp = nil },
+    TelescopeResultsTitle = { guifg = colors.red, guibg = colors.bg0, gui = nil, guisp = nil },
+    TelescopeSelection    = { guifg = nil, guibg = colors.bg1, gui = nil, guisp = nil },
+    TelescopePreviewLine  = { guifg = nil, guibg = colors.bg1, gui = 'none', guisp = nil },
     -- nvim-cmp
     CmpItemAbbr = { link = "GruvboxFg0" },
     CmpItemAbbrDeprecated = { link = "GruvboxFg1" },
