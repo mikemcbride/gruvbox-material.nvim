@@ -20,11 +20,57 @@ local function set_terminal_colors(colors)
   vim.g.terminal_color_15 = colors.fg1
 end
 
+local HEX_DIGITS = {
+    ['0'] = 0,
+    ['1'] = 1,
+    ['2'] = 2,
+    ['3'] = 3,
+    ['4'] = 4,
+    ['5'] = 5,
+    ['6'] = 6,
+    ['7'] = 7,
+    ['8'] = 8,
+    ['9'] = 9,
+    ['a'] = 10,
+    ['b'] = 11,
+    ['c'] = 12,
+    ['d'] = 13,
+    ['e'] = 14,
+    ['f'] = 15,
+    ['A'] = 10,
+    ['B'] = 11,
+    ['C'] = 12,
+    ['D'] = 13,
+    ['E'] = 14,
+    ['F'] = 15,
+}
+local function hex_to_rgb(hex)
+    return HEX_DIGITS[string.sub(hex, 1, 1)] * 16 + HEX_DIGITS[string.sub(hex, 2, 2)],
+        HEX_DIGITS[string.sub(hex, 3, 3)] * 16 + HEX_DIGITS[string.sub(hex, 4, 4)],
+        HEX_DIGITS[string.sub(hex, 5, 5)] * 16 + HEX_DIGITS[string.sub(hex, 6, 6)]
+end
+local function rgb_to_hex(r, g, b)
+    return bit.tohex(bit.bor(bit.lshift(r, 16), bit.lshift(g, 8), b), 6)
+end
+local function darken(hex, pct)
+    pct = 1 - pct
+    local r, g, b = hex_to_rgb(string.sub(hex, 2))
+    r = math.floor(r * pct)
+    g = math.floor(g * pct)
+    b = math.floor(b * pct)
+    return string.format("#%s", rgb_to_hex(r, g, b))
+end
+
 M.setup = function()
   local config = require("gruvbox_material").config
   local colors = require("gruvbox_material.palette").get_base_colors(vim.o.background, config.contrast)
 
   set_terminal_colors(colors)
+
+
+  local darkerbg           = darken(colors.bg0, 0.1)
+  local darkercursorline   = darken(colors.bg1, 0.1)
+  local darkerstatusline   = darken(colors.bg2, 0.1)
 
   local groups = {
     -- Base groups
@@ -523,15 +569,15 @@ M.setup = function()
     -- TelescopePromptPrefix = { link = "GruvboxRed" },
     TelescopePrompt = { link = "TelescopeNormal" },
 
-    TelescopeBorder       = { fg = colors.red, bg = colors.bg0 },
-    TelescopePromptBorder = { fg = colors.red, bg = colors.bg0},
-    TelescopePromptNormal = { fg = colors.red, bg = colors.bg0},
-    TelescopePromptPrefix = { fg = colors.red, bg = colors.bg0},
-    TelescopeNormal       = { fg = nil, bg = colors.bg0},
-    TelescopePreviewTitle = { fg = colors.bg1, bg = colors.green},
-    TelescopePromptTitle  = { fg = colors.bg1, bg = colors.green},
-    TelescopeResultsTitle = { fg = colors.red, bg = colors.bg0},
-    TelescopeSelection    = { fg = nil, bg = colors.bg1},
+    TelescopeBorder       = { fg = darkerbg, bg = darkerbg},
+    TelescopePromptBorder = { fg = darkerstatusline, bg = darkerstatusline},
+    TelescopePromptNormal = { fg = colors.red, bg = darkerstatusline},
+    TelescopePromptPrefix = { fg = colors.yellow, bg = darkerstatusline},
+    TelescopeNormal       = { fg = nil, bg = darkerbg},
+    TelescopePreviewTitle = { fg = darkercursorline, bg = colors.green},
+    TelescopePromptTitle  = { fg = darkercursorline, bg = colors.red},
+    TelescopeResultsTitle = { fg = darkerbg, bg = darkerbg},
+    TelescopeSelection    = { fg = nil, bg = darkerstatusline},
     TelescopePreviewLine  = { fg = nil, bg = colors.bg1},
     -- nvim-cmp
     CmpItemAbbr = { link = "GruvboxFg0" },
