@@ -9,13 +9,13 @@ gruvbox_material.normal = {
 }
 
 gruvbox_material.insert = {
-  a = { bg = colors.green, fg = colors.bg0 },
-  b = { bg = colors.bg2, fg = colors.green },
+  a = { bg = colors.aqua, fg = colors.bg0 },
+  b = { bg = colors.bg2, fg = colors.aqua },
 }
 
 gruvbox_material.command = {
-  a = { bg = colors.aqua, fg = colors.bg0 },
-  b = { bg = colors.bg2, fg = colors.aqua },
+  a = { bg = colors.red, fg = colors.bg0 },
+  b = { bg = colors.bg2, fg = colors.red },
 }
 
 gruvbox_material.visual = {
