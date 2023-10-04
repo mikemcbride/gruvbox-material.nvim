@@ -1,16 +1,6 @@
-<div align="center">
-      <h1> <img src="https://i.postimg.cc/WpQzgxVh/plugin-Icon.png" width="80px"><br/>gruvbox.nvim</h1>
-     </div>
-<p align="center">
-      <a href="https://twitter.com/intent/user?screen_name=ellisonleao" target="_blank"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/ellisonleao?style=for-the-badge" style="vertical-align:center" ></a>
-      <a href="#"><img alt="Made with Lua" src="https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua" style="vertical-align:center" /></a>
-</p>
+# gruvbox-material
 
-A port of [gruvbox community](https://github.com/gruvbox-community/gruvbox) theme to lua with [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) support!
-
-<p align="center">
-    <img src="https://i.postimg.cc/fy3tnGFt/gruvbox-themes.png" />
-</p>
+A port of [gruvbox](https://github.com/ellisonleao/gruvbox) theme.
 
 # Prerequisites
 
@@ -53,7 +43,7 @@ Additional settings for gruvbox are:
 ```lua
 -- setup must be called before loading the colorscheme
 -- Default options:
-require("gruvbox-material").setup({
+require("gruvbox_material").setup({
   undercurl = true,
   underline = true,
   bold = true,
@@ -75,7 +65,7 @@ require("gruvbox-material").setup({
   dim_inactive = false,
   transparent_mode = false,
 })
-vim.cmd("colorscheme gruvbox-material")
+vim.cmd("colorscheme gruvbox_material")
 ```
 
 ## Overriding
@@ -85,12 +75,12 @@ vim.cmd("colorscheme gruvbox-material")
 You can specify your own palette colors. For example:
 
 ```lua
-require("gruvbox-material").setup({
+require("gruvbox_material").setup({
     palette_overrides = {
         bright_green = "#990000",
     }
 })
-vim.cmd("colorscheme gruvbox-material")
+vim.cmd("colorscheme gruvbox_material")
 ```
 
 More colors in the [palette.lua](lua/gruvbox/palette.lua) file
@@ -101,12 +91,12 @@ If you don't enjoy the current color for a specific highlight group, now you can
 example:
 
 ```lua
-require("gruvbox-material").setup({
+require("gruvbox_material").setup({
     overrides = {
         SignColumn = {bg = "#ff9900"}
     }
 })
-vim.cmd("colorscheme gruvbox-material")
+vim.cmd("colorscheme gruvbox_material")
 ```
 
 Please note that the override values must follow the attributes from the highlight group map, such as:
