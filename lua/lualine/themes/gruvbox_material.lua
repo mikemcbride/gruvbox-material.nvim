@@ -3,7 +3,7 @@ local colors = require("gruvbox_material.palette").get_base_colors("dark", "hard
 local gruvbox_material = {}
 
 gruvbox_material.normal = {
-  a = { bg = colors.blue, fg = colors.fg0 },
+  a = { bg = colors.blue, fg = colors.bg0 },
   b = { bg = colors.bg2, fg = colors.blue },
   c = { bg = colors.bg1, fg = colors.fg2 },
 }
