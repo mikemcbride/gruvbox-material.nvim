@@ -14,8 +14,8 @@ gruvbox_material.insert = {
 }
 
 gruvbox_material.command = {
-  a = { bg = colors.red, fg = colors.bg0 },
-  b = { bg = colors.bg2, fg = colors.red },
+  a = { bg = colors.orange, fg = colors.bg0 },
+  b = { bg = colors.bg2, fg = colors.orange },
 }
 
 gruvbox_material.visual = {
