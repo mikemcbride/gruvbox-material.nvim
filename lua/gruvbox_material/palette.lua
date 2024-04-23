@@ -35,7 +35,7 @@ M.colors = {
   faded_yellow = "#b47109",
   faded_blue = "#45707a",
   faded_purple = "#945e80",
-  faded_aqua = "#47a5d",
+  faded_aqua = "#47a5da",
   faded_orange = "#c35e0a",
   gray = "#928374",
 }
