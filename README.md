@@ -107,3 +107,31 @@ Please note that the override values must follow the attributes from the highlig
 - **italic** - true or false for italic font
 
 Other values can be seen in `:h synIDattr`
+
+### Telescope Theme
+
+I previously shipped this with an opinionated Telescope config, but decided to remove it. If you want the opinionated theme, you can add it like this:
+
+```lua
+require("gruvbox_material").setup({
+    overrides = {
+        TelescopeSelectionCaret = { link = "GruvboxGray" },
+        TelescopeMultiSelection = { link = "GruvboxGray" },
+        TelescopeMatching       = { link = "GruvboxBlue" },
+        TelescopePrompt         = { link = "TelescopeNormal" },
+        TelescopeBorder         = { fg = darkerbg, bg = darkerbg},
+        TelescopeResultsBorder  = { link = "TelescopeBorder" },
+        TelescopePreviewBorder  = { link = "TelescopeBorder" },
+        TelescopePreview        = { bg = colors.bg1 },
+        TelescopePromptBorder   = { fg = darkerstatusline, bg = darkerstatusline},
+        TelescopePromptNormal   = { fg = colors.fg1, bg = darkerstatusline},
+        TelescopePromptPrefix   = { fg = colors.yellow, bg = darkerstatusline},
+        TelescopeNormal         = { fg = colors.fg1, bg = darkerbg},
+        TelescopePreviewTitle   = { fg = darkercursorline, bg = colors.green},
+        TelescopePromptTitle    = { fg = darkercursorline, bg = colors.red},
+        TelescopeResultsTitle   = { fg = darkerbg, bg = darkerbg},
+        TelescopeSelection      = { fg = nil, bg = darkerstatusline},
+        TelescopePreviewLine    = { fg = nil, bg = colors.bg1},
+    }
+})
+```
