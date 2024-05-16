@@ -478,6 +478,8 @@ M.setup = function()
     -- gitcommit
     gitcommitSelectedFile = { link = "GruvboxGreen" },
     gitcommitDiscardedFile = { link = "GruvboxRed" },
+    gitcommitFirstLine = { link = "GruvboxFg1" },
+    gitcommitSummary = { link = "GruvboxFg1" },
     -- gitsigns.nvim
     GitSignsAdd = { link = "GruvboxGreenSign" },
     GitSignsChange = { link = "GruvboxAquaSign" },
